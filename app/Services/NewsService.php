@@ -13,10 +13,13 @@ class NewsService implements NewsServiceInterface
         ])->json();
     }
 
-    public function getEverything($query = 'latest')
+    public function getEverything($query = 'latest', $page = 1, $pageSize = 5)
     {
         return Http::get('https://newsapi.org/v2/everything', [
             'q' => $query,
+            'page' => $page,
+            'pageSize' => $pageSize,
+            'sortBy' => 'publishedAt',
             'apiKey' => env('NEWS_API_KEY')
         ])->json();
     }
